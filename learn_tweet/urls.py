@@ -19,5 +19,5 @@ from .views import start_page
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$',start_page, name='home'),
-    # url(r'^tweet/', include('tweet_feed.urls')),
+    url(r'^tweet/', include('tweet_feed.urls', namespace='tweet')),
 ]

@@ -1,0 +1,12 @@
+{% extends 'start_page.html' %}
+{% block title %} Detail {% endblock title %}
+{% block content %}
+
+    <p>   {{ object.content }}<br/>
+        {{ object.user }}<br/>
+        {{ object.updated }}
+        {{ object.timestamp | timesince }} ago</p>
+
+
+{% endblock content %}
+
