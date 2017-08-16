@@ -1,0 +1,8 @@
+{% extends 'start_page.html' %}
+
+{% block title %} Create {% endblock title %}
+{% block content %}
+
+{% include 'tweet_feed/form.html' with form=form btn_title='Tweet' %}
+
+{% endblock content %}
