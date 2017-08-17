@@ -3,6 +3,7 @@ from django.conf import settings
 from .validators import validate_content
 from django.urls import reverse_lazy,reverse
 
+
 class Tweet(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     content = models.CharField(max_length=140, validators=[validate_content])

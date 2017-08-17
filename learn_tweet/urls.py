@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from django.contrib import admin
-from .views import start_page
+from tweet_feed.views import TweetListView
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$',start_page, name='home'),
+    url(r'^$',TweetListView.as_view(), name='list'),
+    url(r'^api/tweet/', include('tweet_feed.api.urls', namespace='tweet-api')),
     url(r'^tweet/', include('tweet_feed.urls', namespace='tweet')),
 ]

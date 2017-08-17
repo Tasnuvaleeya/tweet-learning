@@ -7,6 +7,7 @@ from django.forms.utils import ErrorList
 from django.urls import reverse_lazy,reverse
 from django import forms
 from .mixins import FormUserNeededMixin, UserOwnerMixin
+from django.db.models import Q
 
 
 class TweetDetailView(DetailView):
@@ -14,7 +15,17 @@ class TweetDetailView(DetailView):
 
 
 class TweetListView(ListView):
-    model = Tweet
+
+    def get_queryset(self, *args, **kwargs):
+        qs = Tweet.objects.all()
+        print(self.request.GET)
+        query = self.request.GET.get("q",None)
+        if query is not None:
+            qs = qs.filter(
+                Q(content__icontains=query)|
+                Q(user__username__icontains=query)
+            )
+        return qs
 
     def get_context_data(self, *args, **kwargs):
         context = super(TweetListView, self).get_context_data(*args, **kwargs)

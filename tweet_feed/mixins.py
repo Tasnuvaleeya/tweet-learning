@@ -19,3 +19,12 @@ class UserOwnerMixin(FormUserNeededMixin, object):
                 else:
                     form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList(["This user is not allowed to update this tweet"])
                     return self.form_invalid(form)
+
+
+# class UserOwnerDeletetionMixin(FormUserNeededMixin,object):
+#     def form_valid(self, form):
+#         if form.instance.user == self.request.user:
+#             return super(UserOwnerDeletetionMixin, self).form_valid(form)
+#         else:
+#             form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList(["This User is not allowed to delete this tweet"])
+#             return self.form_invalid(form)
