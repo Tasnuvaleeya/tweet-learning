@@ -2,6 +2,7 @@ from rest_framework import generics
 from .seriazilers import TweetModelSerializer
 from tweet_feed.models import Tweet
 from rest_framework import permissions
+from .pagination import StandardResultPagination
 
 
 class TweetCreateAPIView(generics.CreateAPIView):
@@ -15,6 +16,7 @@ class TweetCreateAPIView(generics.CreateAPIView):
 class TweetListAPIView(generics.ListAPIView):
     serializer_class = TweetModelSerializer
     permission_classes = [permissions.IsAuthenticated]
+    pagination_class = StandardResultPagination
 
     def get_queryset(self):
         return Tweet.objects.all()
