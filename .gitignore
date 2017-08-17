@@ -4,3 +4,5 @@ lib/
 include/
 bin/
 .idea
+migrations
+db.sqlite3
